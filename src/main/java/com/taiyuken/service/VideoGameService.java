@@ -11,7 +11,9 @@ public class VideoGameService {
     private static final List<VideoGame> videoGames = List.of(
             new VideoGame(1, "Stardew valley","Plantar plantitas plantosas"),
             new VideoGame(2, "Left 4 dead","matar zombies y a tus compis"),
-            new VideoGame(3, "Fortnite","Esconderte y ser gay si no sacas tus kills")
+            new VideoGame(3, "Fortnite","Esconderte y ser gay si no sacas tus kills"),
+            new VideoGame(4, "Rocket League","What a save"),
+            new VideoGame(5,"Gang Beasts","Perrazos en 3D")
     );
 
     public List<VideoGame>getVideoGames(){
