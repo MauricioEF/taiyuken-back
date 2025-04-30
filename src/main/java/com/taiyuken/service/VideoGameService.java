@@ -1,9 +1,11 @@
 package com.taiyuken.service;
 
+import com.taiyuken.exception.VideoGameNotFoundException;
 import com.taiyuken.model.VideoGame;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VideoGameService {
@@ -18,5 +20,12 @@ public class VideoGameService {
 
     public List<VideoGame>getVideoGames(){
         return videoGames;
+    }
+
+    public VideoGame getVideoGameOrFail(int id){
+        return videoGames.stream().filter(videoGame -> videoGame.getId() == id).findFirst().orElseThrow(()-> new VideoGameNotFoundException("VideoGame not found"));
+    }
+    public Optional<VideoGame> getVideoGameById(int id){
+        return videoGames.stream().filter(videoGame -> videoGame.getId()==id).findFirst();
     }
 }
