@@ -21,7 +21,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<Object> getAllVideoGames(){
         //Devolver usuarios
         List<User> users = this.userService.getUsers();

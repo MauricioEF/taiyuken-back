@@ -23,9 +23,21 @@ public class VideoGameService {
     }
 
     public VideoGame getVideoGameOrFail(int id){
-        return videoGames.stream().filter(videoGame -> videoGame.getId() == id).findFirst().orElseThrow(()-> new VideoGameNotFoundException("VideoGame not found"));
+        Optional<VideoGame> optionalVideoGame = getVideoGameById(id);
+        if(optionalVideoGame.isEmpty()){
+            throw new VideoGameNotFoundException("VideoGame not found");
+        }
+        return optionalVideoGame.get();
+//        return videoGames.stream().filter(videoGame -> videoGame.getId() == id).findFirst().orElseThrow(()-> new VideoGameNotFoundException("VideoGame not found"));
     }
+
     public Optional<VideoGame> getVideoGameById(int id){
-        return videoGames.stream().filter(videoGame -> videoGame.getId()==id).findFirst();
+        for(VideoGame videoGame : videoGames){
+            if(videoGame.getId()==id){
+                return Optional.of(videoGame);
+            }
+        }
+        return Optional.empty();
+        //return videoGames.stream().filter(videoGame -> videoGame.getId()==id).findFirst();
     }
 }
