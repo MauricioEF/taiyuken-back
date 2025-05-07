@@ -1,11 +1,13 @@
 package com.taiyuken.controller;
 
 import com.taiyuken.model.User;
+import com.taiyuken.response.MessageResponse;
 import com.taiyuken.response.PayloadResponse;
 import com.taiyuken.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,10 +24,15 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<Object> getAllVideoGames(){
+    public ResponseEntity<Object> getAllUsers(){
         //Devolver usuarios
         List<User> users = this.userService.getUsers();
         return ResponseEntity.status(HttpStatus.OK).body(new PayloadResponse("success",users));
+    }
+    @GetMapping("/{userId}")
+    public ResponseEntity<Object> getUserById(@PathVariable("userId") int id){
+        User user = this.userService.getUserById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(new PayloadResponse("succes", user));
     }
 
 }
