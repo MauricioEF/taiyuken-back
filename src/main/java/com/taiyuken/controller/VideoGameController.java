@@ -1,6 +1,6 @@
 package com.taiyuken.controller;
 
-import com.taiyuken.dto.videogame.CreateVideoGameRequest;
+import com.taiyuken.dto.videoGame.CreateVideoGameRequest;
 import com.taiyuken.model.VideoGame;
 import com.taiyuken.response.MessageResponse;
 import com.taiyuken.response.PayloadResponse;
