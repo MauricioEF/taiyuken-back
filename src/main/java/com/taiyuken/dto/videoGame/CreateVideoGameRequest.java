@@ -1,4 +1,4 @@
-package com.taiyuken.dto.videogame;
+package com.taiyuken.dto.videoGame;
 
 public class CreateVideoGameRequest {
     private String title;
