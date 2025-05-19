@@ -1,6 +1,7 @@
 package com.taiyuken.exception;
 
 import com.taiyuken.response.MessageResponse;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,4 +20,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new MessageResponse("error",exception.getMessage()), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(BoardGameNotFoundException.class)
+    public ResponseEntity<MessageResponse> handleBoardGameNotFound(BoardGameNotFoundException exception){
+        return new ResponseEntity<>(new MessageResponse("error",exception.getMessage()),HttpStatus.NOT_FOUND);
+    }
 }
