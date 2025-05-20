@@ -17,12 +17,14 @@ public class VideoGameService {
             new VideoGame(2, "Left 4 dead","matar zombies y a tus compis"),
             new VideoGame(3, "Fortnite","Esconderte y ser gay si no sacas tus kills"),
             new VideoGame(4, "Rocket League","What a save"),
-            new VideoGame(5,"Gang Beasts","Perrazos en 3D")
+            new VideoGame(5,"Gang Beasts","Perrazos en 3D"),
+            new VideoGame(6,"Big Foot","Un big muy foot")
     ));
 
     public List<VideoGame>getVideoGames(){
         return videoGames;
     }
+
 
     public VideoGame getVideoGameOrFail(int id){
         Optional<VideoGame> optionalVideoGame = getVideoGameById(id);
