@@ -1,5 +1,5 @@
 # Use Eclipse Temurin JDK 21 (LTS)
-FROM eclipse-temurin:21-jdk-slim
+FROM eclipse-temurin:21
 
 # Set workdir
 WORKDIR /app
