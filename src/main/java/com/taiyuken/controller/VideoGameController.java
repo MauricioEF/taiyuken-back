@@ -1,13 +1,13 @@
 package com.taiyuken.controller;
 
+import com.taiyuken.dto.videoGame.CreateVideoGameRequest;
 import com.taiyuken.model.VideoGame;
+import com.taiyuken.response.MessageResponse;
 import com.taiyuken.response.PayloadResponse;
 import com.taiyuken.service.VideoGameService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +27,21 @@ public class VideoGameController {
         List<VideoGame> videoGames = this.videoGameService.getVideoGames();
         return ResponseEntity.status(HttpStatus.OK).body(new PayloadResponse("success",videoGames));
     }
+
+    @PostMapping
+    public ResponseEntity<Object> createVideoGame(@RequestBody CreateVideoGameRequest request){
+        System.out.println("ENTRE");
+        if(request.getTitle()==null||request.getDescription()==null){
+            return ResponseEntity.badRequest().body(new MessageResponse("error","Incomplete values"));
+        }
+        VideoGame videoGame = this.videoGameService.createVideoGame(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new PayloadResponse("success",videoGame));
+    }
+
+    @GetMapping("/{videoGameId}")
+    public ResponseEntity<Object> getVideoGameById(@PathVariable("videoGameId") int videoGameId){
+        return ResponseEntity.status(HttpStatus.OK).body(new PayloadResponse("success",this.videoGameService.getVideoGameOrFail(videoGameId)));
+    }
+
 
 }
