@@ -44,7 +44,7 @@ jobs:
 
       - name: Deploy to Cloud Run
         run: |
-          gcloud run deploy taiyuken \
+          gcloud run deploy taiyuken-back-app \
             --image=us-central1-docker.pkg.dev/taiyuken/taiyuken/taiyuken-back-app \
             --region=us-central1 \
             --platform=managed \
