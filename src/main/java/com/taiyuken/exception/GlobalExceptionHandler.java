@@ -24,4 +24,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<MessageResponse> handleBoardGameNotFound(BoardGameNotFoundException exception){
         return new ResponseEntity<>(new MessageResponse("error",exception.getMessage()),HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(MemberNotFoundException.class)
+    public ResponseEntity<MessageResponse> handleBoardGameNotFound(MemberNotFoundException exception){
+        return new ResponseEntity<>(new MessageResponse("error", exception.getMessage()),HttpStatus.NOT_FOUND);
+    }
 }
