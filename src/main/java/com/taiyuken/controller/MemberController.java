@@ -41,4 +41,9 @@ public class MemberController {
     public ResponseEntity<Object> getMemberById(@PathVariable("memberId")int memberId){
         return ResponseEntity.status(HttpStatus.OK).body(new PayloadResponse("success",this.memberService.getMemberOrFail(memberId)));
     }
+
+    @GetMapping("/{memberId}/populated")
+    public ResponseEntity<Object> getPopulatedMemberById(@PathVariable("memberId")int memberId){
+        return ResponseEntity.status(HttpStatus.OK).body(new PayloadResponse("succes",this.memberService.getPopulatedMemberOrFail(memberId) ));
+    }
 }

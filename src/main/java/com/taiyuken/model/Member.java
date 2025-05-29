@@ -8,6 +8,7 @@ public class Member {
     private int favoriteVideoGame;
     private int favoriteBoardGame;
 
+
     public Member(int id, String nickname, String description, String platform, int favoriteVideoGame, int favoriteBoardGame) {
         this.id = id;
         this.nickname = nickname;
