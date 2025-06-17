@@ -52,4 +52,10 @@ public class VideoGameController {
     UpdateVideoGameRequest videoGameRequest){
         return ResponseEntity.status(HttpStatus.OK).body(new PayloadResponse("success",this.videoGameService.updateVideoGame(videoGameId,videoGameRequest)));
     }
+
+    @DeleteMapping("/{videoGameId}")
+    public ResponseEntity<Object> deleteVideoGame(@PathVariable int videoGameId){
+        this.videoGameService.deleteVideoGame(videoGameId);
+        return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("success","VideoGameDeleted"));
+    }
 }

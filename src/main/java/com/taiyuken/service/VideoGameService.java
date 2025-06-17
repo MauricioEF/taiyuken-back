@@ -62,11 +62,21 @@ public class VideoGameService {
         VideoGame videoGame = videoGameResult.get();
         videoGame.setTitle(videoGameRequest.getTitle());
         videoGame.setDescription(videoGameRequest.getDescription());
-        int videoGameIndex = videoGames.indexOf(videoGame);
+        int videoGameIndex = this.videoGames.indexOf(videoGame);
         if (videoGameIndex == -1) {
-            throw new VideoGameNotUpdatedException("Videogame is not in the list");
+            throw new VideoGameNotUpdatedException("VideoGame is not in the list");
         }
-        videoGames.set(videoGameIndex, videoGame);
+        this.videoGames.set(videoGameIndex, videoGame);
         return videoGame;
+    }
+
+    public void deleteVideoGame(int id){
+        Optional<VideoGame> videoGameResult = this.getVideoGameById(id);
+        if(videoGameResult.isEmpty()){
+            throw new VideoGameNotFoundException("VideoGame doesn't exist");
+        }
+        VideoGame videoGame = videoGameResult.get();
+        this.videoGames.remove(videoGame);
+
     }
 }
