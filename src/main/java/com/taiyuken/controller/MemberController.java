@@ -22,11 +22,20 @@ public class MemberController {
         this.memberService = memberService;
     }
 
+
     @GetMapping
-    public ResponseEntity<Object> getAllMembers(){
+    public ResponseEntity<Object> getAllMembers(@RequestParam(required = false) boolean populated){
+
+
+        if(populated){
+            return ResponseEntity.status(HttpStatus.OK).body(new PayloadResponse("succes",this.memberService.getPopulatedMembers()));
+        }
+
+
         List<Member> members = this.memberService.getMembers();
         return ResponseEntity.status(HttpStatus.OK).body(new PayloadResponse("success",members));
     }
+
 
     @PostMapping
     public ResponseEntity<Object> createMember(@RequestBody CreateMemberRequest request){
@@ -38,7 +47,12 @@ public class MemberController {
     }
 
     @GetMapping("/{memberId}")
-    public ResponseEntity<Object> getMemberById(@PathVariable("memberId")int memberId){
+    public ResponseEntity<Object> getMemberById(@PathVariable("memberId")int memberId,@RequestParam(required = false) boolean populated){
+        if(populated){
+            return ResponseEntity.status(HttpStatus.OK).body(new PayloadResponse("succes",this.memberService.getPopulatedMemberOrFail(memberId) ));
+        }
         return ResponseEntity.status(HttpStatus.OK).body(new PayloadResponse("success",this.memberService.getMemberOrFail(memberId)));
     }
+
+
 }
