@@ -1,12 +1,16 @@
 package com.taiyuken.controller;
 
 import com.taiyuken.dto.videoGame.CreateVideoGameRequest;
+import com.taiyuken.dto.videoGame.UpdateVideoGameRequest;
 import com.taiyuken.model.VideoGame;
 import com.taiyuken.response.MessageResponse;
 import com.taiyuken.response.PayloadResponse;
 import com.taiyuken.service.VideoGameService;
+import jakarta.validation.Valid;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,5 +47,9 @@ public class VideoGameController {
         return ResponseEntity.status(HttpStatus.OK).body(new PayloadResponse("success",this.videoGameService.getVideoGameOrFail(videoGameId)));
     }
 
-
+    @PutMapping("/{videoGameId}")
+    public ResponseEntity<Object> updateVideoGame(@PathVariable int videoGameId, @Valid @RequestBody
+    UpdateVideoGameRequest videoGameRequest){
+        return ResponseEntity.status(HttpStatus.OK).body(new PayloadResponse("success",this.videoGameService.updateVideoGame(videoGameId,videoGameRequest)));
+    }
 }
